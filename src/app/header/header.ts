@@ -8,6 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './header.css'
 })
 export class HeaderComponent {
-  // 🟢 Інтерполяція: Створюємо властивість класу
   pageTitle: string = "Сучасна музика";
 }
