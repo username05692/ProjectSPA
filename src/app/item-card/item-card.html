@@ -1,0 +1,18 @@
+<div class="track-card">
+
+  <div class="album-art">
+    <img ngSrc="{{ track.albumArtUrl }}" alt="Обкладинка альбому: {{ track.title }}" width="120" height="120">
+  </div>
+
+  <div class="track-details">
+    <h3>{{ track.title }}</h3>
+    <p class="artist-name">Виконавець: {{ track.artist }}</p>
+
+    <ul class="details-list">
+      <li>ID:  {{ track.id }}</li>
+      <li>Жанр: {{ track.genre }}</li>
+      <li>Рік випуску: {{ track.releaseYear }}</li>
+      <li>Тривалість: {{ track.duration }} сек.</li>
+    </ul>
+  </div>
+</div>
