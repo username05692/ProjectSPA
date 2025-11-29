@@ -1,0 +1,10 @@
+
+.app-footer {
+  background-color: #FFA500;
+  /* Центрування тексту */
+  text-align: center;
+  padding: 15px 0;
+  color: white;
+  font-size: 0.9em;
+
+}

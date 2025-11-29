@@ -1,0 +1,15 @@
+
+.app-header {
+  background-color: #ffc457;
+  /* Центрування тексту */
+  text-align: center;
+  /* Додаємо внутрішні відступи (зверху і знизу) */
+  padding: 20px 0;
+}
+
+h1 {
+  /* Колір тексту */
+  color: white;
+  margin: 0;
+  font-size: 2em;
+}
