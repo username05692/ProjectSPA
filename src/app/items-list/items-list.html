@@ -1,0 +1,7 @@
+<div class="list-container">
+  <h2>Список треків</h2>
+
+  @for (track of tracks; track track.id) {
+    <app-item-card [track]="track" />
+  }
+</div>

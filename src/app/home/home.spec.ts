@@ -1,21 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// src/app/home/home.spec.ts
 
-import { Home } from './home';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { HomeComponent } from "./home"; // 🟢 ВИПРАВЛЕНО
 
-describe('Home', () => {
-  let component: Home;
-  let fixture: ComponentFixture<Home>;
+describe('HomeComponent', () => {
+  let component: HomeComponent; // 🟢 ВИПРАВЛЕНО
+  let fixture: ComponentFixture<HomeComponent>; // 🟢 ВИПРАВЛЕНО
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Home]
+      imports: [HomeComponent] // 🟢 ВИПРАВЛЕНО
     })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(Home);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      .compileComponents();
   });
+
+  fixture = TestBed.createComponent(HomeComponent); // 🟢 ВИПРАВЛЕНО
+  component = fixture.componentInstance;
+  fixture.detectChanges();
 
   it('should create', () => {
     expect(component).toBeTruthy();
