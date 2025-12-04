@@ -1,0 +1,69 @@
+
+.track-card {
+  display: flex;
+  padding: 15px;
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  position: relative;
+  overflow: visible;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.track-card:hover {
+
+  background-color: #fff8f5;
+  border-color: #ff6a00;
+  border-width: 1px;
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+
+.album-art {
+  width: 120px;
+  height: 120px;
+  margin-right: 20px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.album-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.track-details {
+  flex-grow: 1;
+}
+
+
+.top-badge {
+  position: absolute;
+  top: -15px;
+  left: 15px;
+  background-color: #ff6a00;
+  color: white;
+  font-size: 0.8em;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+
+.title-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.artist-name {
+  color: #555;
+  margin-top: 0;
+}

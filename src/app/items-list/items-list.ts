@@ -22,7 +22,8 @@ export class ItemsList {
       genre: 'Alternative R&B',
       duration: 158,
       releaseYear: 2025,
-      albumArtUrl: 'assets/ray.png'
+      albumArtUrl: 'assets/ray.png',
+      isTop: true
     },
     {
       id: 2,
@@ -31,7 +32,8 @@ export class ItemsList {
       genre: 'Pop/Alternative',
       duration: 125,
       releaseYear: 2024,
-      albumArtUrl: 'assets/skiny.png'
+      albumArtUrl: 'assets/skiny.png',
+      isTop: false
     },
     {
       id: 3,
@@ -40,7 +42,8 @@ export class ItemsList {
       genre: 'Pop/Electronic',
       duration: 174,
       releaseYear: 2023,
-      albumArtUrl: 'assets/boy1.png'
+      albumArtUrl: 'assets/boy1.png',
+      isTop: false
     },
     {
       id: 4,
@@ -49,7 +52,8 @@ export class ItemsList {
       genre: 'Alternative Rock',
       duration: 200,
       releaseYear: 2024,
-      albumArtUrl: 'assets/eyes.png'
+      albumArtUrl: 'assets/eyes.png',
+      isTop: false
     },
   ];
 

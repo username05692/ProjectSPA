@@ -7,4 +7,5 @@ export interface Track {
   duration: number;
   releaseYear: number;
   albumArtUrl: string;
+  isTop?: boolean;
 }

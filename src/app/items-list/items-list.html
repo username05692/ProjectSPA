@@ -1,7 +1,9 @@
 <div class="list-container">
-  <h2>Список треків</h2>
+  <h2>Наші сучасні треки</h2>
 
-  @for (track of tracks; track track.id) {
-    <app-item-card [track]="track" />
-  }
+  <app-item-card
+    *ngFor="let track of tracks"
+    [track]="track">
+  </app-item-card>
+
 </div>

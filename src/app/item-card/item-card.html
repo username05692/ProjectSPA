@@ -1,18 +1,28 @@
-<div class="track-card">
-
-  <div class="album-art">
-    <img ngSrc="{{ track.albumArtUrl }}" alt="Обкладинка альбому: {{ track.title }}" width="120" height="120">
-  </div>
+<div
+  class="track-card"
+  [ngClass]="{'top-hit': track.isTop}"> <div class="album-art">
+  <img ngSrc="{{ track.albumArtUrl }}"
+       alt="Обкладинка альбому: {{ track.title }}"
+       width="120"
+       height="120">
+</div>
 
   <div class="track-details">
-    <h3>{{ track.title }}</h3>
+
+    <div class="title-row">
+      <h3>{{ track.title }}</h3>
+
+      <p class="top-badge" *ngIf="track.isTop">TOP</p>
+    </div>
+
     <p class="artist-name">Виконавець: {{ track.artist }}</p>
 
     <ul class="details-list">
-      <li>ID:  {{ track.id }}</li>
+      <li>ID: {{ track.id }}</li>
       <li>Жанр: {{ track.genre }}</li>
       <li>Рік випуску: {{ track.releaseYear }}</li>
       <li>Тривалість: {{ track.duration }} сек.</li>
     </ul>
   </div>
 </div>
+
