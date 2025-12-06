@@ -1,19 +1,21 @@
-
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Track } from '../shared/models/track';
 import { ItemCard } from '../item-card/item-card';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-items-list',
   standalone: true,
-  imports: [CommonModule, ItemCard],
+  imports: [CommonModule, ItemCard, FormsModule], // FormsModule додано коректно
   templateUrl: './items-list.html',
   styleUrl: './items-list.css',
 })
 export class ItemsList {
 
+  filterText: string = '';
 
+  // 🟢 1. ВИПРАВЛЕНО: Масив tracks має бути оголошений першим
   tracks: Track[] = [
     {
       id: 1,
@@ -57,4 +59,29 @@ export class ItemsList {
     },
   ];
 
+  filteredTracks: Track[] = this.tracks;
+
+  handleTrackSelection(selectedTrack: Track): void {
+    console.log('--- ITEMS LIST COMPONENT: ОБРАНО ТРЕК ---');
+    console.log('ID:', selectedTrack.id);
+    console.log('Назва:', selectedTrack.title);
+    console.log('Об\'єкт треку:', selectedTrack);
+    console.log('----------------------------------------');
+  }
+
+  // 🟢 3. ДОДАНО: Необхідний метод фільтрації
+  filterTracks(): void {
+    const query = this.filterText.toLowerCase().trim();
+
+    if (!query) {
+      this.filteredTracks = this.tracks;
+      return;
+    }
+
+    // Фільтруємо за назвою треку або іменем виконавця
+    this.filteredTracks = this.tracks.filter(track =>
+      track.title.toLowerCase().includes(query) ||
+      track.artist.toLowerCase().includes(query)
+    );
+  }
 }

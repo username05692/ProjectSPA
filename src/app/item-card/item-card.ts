@@ -1,8 +1,6 @@
-
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { NgOptimizedImage, CommonModule } from '@angular/common';
 import { Track } from '../shared/models/track';
-import { NgOptimizedImage,CommonModule } from '@angular/common';
-
 
 @Component({
   selector: 'app-item-card',
@@ -13,4 +11,10 @@ import { NgOptimizedImage,CommonModule } from '@angular/common';
 })
 export class ItemCard {
   @Input() track!: Track;
+  @Output() trackSelected = new EventEmitter<Track>();
+
+  onSelect(): void {
+    this.trackSelected.emit(this.track);
+    console.log('Подія спрацювала для треку:', this.track.title);
+  }
 }

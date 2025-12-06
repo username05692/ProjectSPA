@@ -1,0 +1,42 @@
+
+.list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 0 20px 0;
+  margin: 0 auto;
+
+}
+.search-field {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.search-field input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1.1em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+.search-field input:focus {
+  border-color: #ff6a00;
+  outline: none;
+}
+
+:host {
+  display: block;
+  padding: 0 20px;
+}
+
+.no-results {
+  width: 100%;
+  padding: 30px;
+  text-align: center;
+  color: #888;
+  border-radius: 8px;
+  margin-top: 20px;
+}
