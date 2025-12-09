@@ -1,10 +1,11 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Track } from '../shared/models/track';
 import { ItemCard } from '../item-card/item-card';
 import { DataService } from '../shared/data';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-items-list',
@@ -13,31 +14,34 @@ import { DataService } from '../shared/data';
   templateUrl: './items-list.html',
   styleUrl: './items-list.css',
 })
-export class ItemsList implements OnInit {
+export class ItemsList implements OnInit, OnDestroy {
 
   filterText: string = '';
-  tracks: Track[] = [];
   filteredTracks: Track[] = [];
+
+  private tracksSubscription!: Subscription;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.tracks = this.dataService.getTracks();
-    this.filterTracks();
+
+    this.tracksSubscription = this.dataService.filteredTracks$
+      .subscribe(data => {
+        this.filteredTracks = data;
+      });
+
+    this.dataService.setFilter(this.filterText);
   }
 
-  filterTracks(): void {
-    const query = this.filterText.toLowerCase().trim();
-
-    if (!query) {
-      this.filteredTracks = this.tracks;
-      return;
+  ngOnDestroy(): void {
+    if (this.tracksSubscription) {
+      this.tracksSubscription.unsubscribe();
+      console.log('Підписка успішно відписана в ngOnDestroy.');
     }
-
-    this.filteredTracks = this.tracks.filter(track =>
-      track.title.toLowerCase().includes(query) ||
-      track.artist.toLowerCase().includes(query)
-    );
+  }
+  
+  filterTracks(): void {
+    this.dataService.setFilter(this.filterText);
   }
 
   handleTrackSelection(selectedTrack: Track): void {

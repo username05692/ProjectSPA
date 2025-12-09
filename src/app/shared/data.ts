@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { Track } from './models/track';
+import { Observable, of, BehaviorSubject } from 'rxjs'; // Імпортуємо необхідні оператори RxJS
 
 @Injectable({
   providedIn: 'root'
@@ -50,8 +51,30 @@ export class DataService {
     },
   ];
 
+
+  private filteredTracksSubject = new BehaviorSubject<Track[]>(this.tracks);
+
+  filteredTracks$ = this.filteredTracksSubject.asObservable();
+
   constructor() { }
-  getTracks(): Track[] {
-    return this.tracks;
+
+  getTracks(): Observable<Track[]> {
+    return of(this.tracks);
+  }
+
+  setFilter(query: string): void {
+    const queryLower = query.toLowerCase().trim();
+
+    if (!queryLower) {
+      this.filteredTracksSubject.next(this.tracks);
+      return;
+    }
+
+    const filtered = this.tracks.filter(track =>
+      track.title.toLowerCase().includes(queryLower) ||
+      track.artist.toLowerCase().includes(queryLower)
+    );
+
+    this.filteredTracksSubject.next(filtered);
   }
 }
