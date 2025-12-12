@@ -1,15 +1,17 @@
-
 :host {
-
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.content {
+.content-wrapper {
   flex-grow: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.content {
-  padding: 20px;
+app-header,
+app-footer {
+  width: 100%;
+  flex-shrink: 0;
 }

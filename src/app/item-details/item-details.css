@@ -1,0 +1,84 @@
+
+.details-view-container {
+  max-width: 700px;
+  max-height: 85vh;
+  overflow-y: auto;
+
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.details-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+}
+
+.details-card h2 {
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  width: 100%;
+  font-size: 1.6em;
+}
+
+.album-art-details {
+  margin-bottom: 25px;
+}
+
+.album-art-details img {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.info-section {
+  margin-top: 10px;
+  text-align: left;
+  max-width: 400px;
+}
+
+.info-section p {
+  font-size: 1.05em;
+  color: #555;
+  margin: 7px 0;
+}
+
+.info-section strong {
+  font-weight: bold;
+  min-width: 100px;
+}
+
+.top-badge-details {
+  background-color: #ff9800;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7em;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.back-button {
+  margin-top: 30px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff7300;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #b35100;
+}
+

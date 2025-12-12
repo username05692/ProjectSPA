@@ -1,0 +1,36 @@
+<div class="details-view-container">
+
+  <div *ngIf="track" class="details-card">
+
+    <h2>Деталі Треку: {{ track.title }}</h2>
+
+    <div class="album-art-details">
+      <img [ngSrc]="track.albumArtUrl"
+           alt="Обкладинка альбому: {{ track.title }}"
+           width="250"
+           height="250"
+           priority>
+    </div>
+
+    <div class="info-section">
+      <p *ngIf="track.isTop" class="top-badge-details">TOP HIT</p>
+      <p><strong>Виконавець:</strong> {{ track.artist }}</p>
+      <p><strong>Жанр:</strong> {{ track.genre }}</p>
+      <p><strong>Рік випуску:</strong> {{ track.releaseYear }}</p>
+      <p><strong>Тривалість:</strong> {{ track.duration }} сек.</p>
+      <p><strong>ID:</strong> {{ track.id }}</p>
+    </div>
+
+    <a [routerLink]="['/items']" class="back-button">
+      ← Повернутися до списку
+    </a>
+  </div>
+
+  <div *ngIf="!track" class="not-found">
+    <h2>Трек не знайдено.</h2>
+    <p>Схоже, цього треку не існує.</p>
+    <a [routerLink]="['/items']" class="back-button">
+      Повернутися до списку
+    </a>
+  </div>
+</div>

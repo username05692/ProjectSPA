@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-// Короткі імпорти
 import { HeaderComponent } from '../header/header';
 import { FooterComponent } from '../footer/footer';
 

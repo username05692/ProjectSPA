@@ -1,12 +1,12 @@
-
 import { Injectable } from '@angular/core';
 import { Track } from './models/track';
-import { Observable, of, BehaviorSubject } from 'rxjs'; // Імпортуємо необхідні оператори RxJS
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
 
   private tracks: Track[] = [
     {
@@ -51,15 +51,18 @@ export class DataService {
     },
   ];
 
-
   private filteredTracksSubject = new BehaviorSubject<Track[]>(this.tracks);
-
   filteredTracks$ = this.filteredTracksSubject.asObservable();
 
   constructor() { }
 
   getTracks(): Observable<Track[]> {
     return of(this.tracks);
+  }
+
+  getTrackById(id: number): Observable<Track | undefined> {
+    const track = this.tracks.find(t => t.id === id);
+    return of(track);
   }
 
   setFilter(query: string): void {
