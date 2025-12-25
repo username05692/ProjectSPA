@@ -1,21 +1,23 @@
-
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Track } from '../shared/models/track';
 import { RouterLink } from '@angular/router';
+import { Track } from '../shared/models/track';
+import { DurationPipe } from '../shared/pipes/duration-pipe';
+import { HoverStyleDirective } from '../shared/directives/hover-style.directive';
 
 @Component({
   selector: 'app-item-card',
   standalone: true,
-  imports: [CommonModule, RouterLink, NgOptimizedImage],
+  imports: [
+    CommonModule,
+    RouterLink,
+    NgOptimizedImage,
+    DurationPipe,
+    HoverStyleDirective
+  ],
   templateUrl: './item-card.html',
-  styleUrl: './item-card.css',
+  styleUrl: './item-card.css'
 })
 export class ItemCard {
-  @Input({ required: true }) track!: Track;
-  @Output() trackSelected = new EventEmitter<Track>();
-
-  onSelect(): void {
-    this.trackSelected.emit(this.track);
-  }
+  @Input() track!: Track;
 }

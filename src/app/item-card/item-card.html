@@ -1,6 +1,7 @@
 <div
   class="track-card"
-  [ngClass]="{'top-hit': track.isTop}">
+  [ngClass]="{'top-hit': track.isTop}"
+  appHoverStyle>
 
   <div class="album-art">
     <img [ngSrc]="track.albumArtUrl"
@@ -22,7 +23,7 @@
       <li>ID: {{ track.id }}</li>
       <li>Жанр: {{ track.genre }}</li>
       <li>Рік випуску: {{ track.releaseYear }}</li>
-      <li>Тривалість: {{ track.duration }} сек.</li>
+      <li>Тривалість: {{ track.duration | duration }}</li>
     </ul>
 
     <div class="card-actions">

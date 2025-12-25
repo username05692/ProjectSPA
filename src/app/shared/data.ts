@@ -35,7 +35,7 @@ export class DataService {
       artist: 'Кажанна',
       genre: 'Pop/Electronic',
       duration: 174,
-      releaseYear: 2023,
+      releaseYear: 2025,
       albumArtUrl: 'assets/boy1.png',
       isTop: false
     },

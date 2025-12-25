@@ -5,18 +5,21 @@
     <input
       type="text"
       placeholder="Пошук за назвою або виконавцем..."
-      [(ngModel)]="filterText"
-      (ngModelChange)="filterTracks()">
+      [ngModel]="''"
+      (ngModelChange)="onFilterChange($event)">
   </div>
 
-  <div class="no-results" *ngIf="filteredTracks.length === 0">
-    <h3>Нічого не знайдено за вашим запитом </h3>
-  </div>
+  <ng-container *ngIf="tracks$ | async as tracks">
 
-  <app-item-card
-    *ngFor="let track of filteredTracks"
-    [track]="track"
-    (trackSelected)="handleTrackSelection($event)">
-  </app-item-card>
+    <div class="no-results" *ngIf="tracks.length === 0">
+      <h3>Нічого не знайдено за вашим запитом </h3>
+    </div>
+
+    <app-item-card
+      *ngFor="let track of tracks"
+      [track]="track">
+    </app-item-card>
+
+  </ng-container>
 
 </div>

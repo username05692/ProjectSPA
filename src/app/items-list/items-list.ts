@@ -1,54 +1,42 @@
-
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Track } from '../shared/models/track';
 import { ItemCard } from '../item-card/item-card';
 import { DataService } from '../shared/data';
-import { Subscription } from 'rxjs';
+import { Track } from '../shared/models/track';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-items-list',
   standalone: true,
-  imports: [CommonModule, ItemCard, FormsModule],
+  imports: [CommonModule, FormsModule, ItemCard],
   templateUrl: './items-list.html',
   styleUrl: './items-list.css',
 })
-export class ItemsList implements OnInit, OnDestroy {
+export class ItemsList implements OnInit {
 
-  filterText: string = '';
-  filteredTracks: Track[] = [];
+  tracks$: Observable<Track[]> | undefined;
+  private filterSubject = new BehaviorSubject<string>('');
 
-  private tracksSubscription!: Subscription;
-
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
+    const allTracks$ = this.dataService.getTracks();
+    const filter$ = this.filterSubject.asObservable().pipe(startWith(''));
 
-    this.tracksSubscription = this.dataService.filteredTracks$
-      .subscribe(data => {
-        this.filteredTracks = data;
-      });
-
-    this.dataService.setFilter(this.filterText);
+    this.tracks$ = combineLatest([allTracks$, filter$]).pipe(
+      map(([tracks, filterText]) => {
+        const lowerFilter = filterText.toLowerCase();
+        return tracks.filter(track =>
+          track.title.toLowerCase().includes(lowerFilter) ||
+          track.artist.toLowerCase().includes(lowerFilter)
+        );
+      })
+    );
   }
 
-  ngOnDestroy(): void {
-    if (this.tracksSubscription) {
-      this.tracksSubscription.unsubscribe();
-      console.log('Підписка успішно відписана в ngOnDestroy.');
-    }
-  }
-  
-  filterTracks(): void {
-    this.dataService.setFilter(this.filterText);
-  }
-
-  handleTrackSelection(selectedTrack: Track): void {
-    console.log('--- ITEMS LIST COMPONENT: ОБРАНО ТРЕК ---');
-    console.log('ID:', selectedTrack.id);
-    console.log('Назва:', selectedTrack.title);
-    console.log('Об\'єкт треку:', selectedTrack);
-    console.log('----------------------------------------');
+  onFilterChange(value: string): void {
+    this.filterSubject.next(value);
   }
 }
