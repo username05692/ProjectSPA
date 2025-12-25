@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ItemCard } from '../item-card/item-card';
 import { DataService } from '../shared/data';
 import { Track } from '../shared/models/track';
@@ -10,7 +11,7 @@ import { map, startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-items-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ItemCard],
+  imports: [CommonModule, FormsModule, RouterLink, ItemCard],
   templateUrl: './items-list.html',
   styleUrl: './items-list.css',
 })

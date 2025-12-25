@@ -7,7 +7,6 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 })
 export class DataService {
 
-
   private tracks: Track[] = [
     {
       id: 1,
@@ -79,5 +78,16 @@ export class DataService {
     );
 
     this.filteredTracksSubject.next(filtered);
+  }
+
+  addTrack(trackData: any): Observable<Track> {
+    const newTrack: Track = {
+      ...trackData,
+      id: this.tracks.length > 0 ? Math.max(...this.tracks.map(t => t.id)) + 1 : 1,
+      isTop: false
+    };
+    this.tracks.push(newTrack);
+    this.filteredTracksSubject.next(this.tracks);
+    return of(newTrack);
   }
 }

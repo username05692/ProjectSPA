@@ -1,0 +1,55 @@
+<div class="form-container">
+  <div class="form-card">
+    <h2>Додати новий музичний трек</h2>
+
+    <form [formGroup]="trackForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="title">Назва треку</label>
+        <input id="title" formControlName="title" type="text" placeholder="Наприклад: Where The Hell Is My Husband">
+        <div class="error-text" *ngIf="trackForm.get('title')?.touched && trackForm.get('title')?.invalid">
+          <small *ngIf="trackForm.get('title')?.errors?.['required']">Це обов'язкове поле</small>
+          <small *ngIf="trackForm.get('title')?.errors?.['minlength']">Мінімум 3 символи</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="artist">Виконавець</label>
+        <input id="artist" formControlName="artist" type="text" placeholder="Наприклад: RAYE">
+        <div class="error-text" *ngIf="trackForm.get('artist')?.touched && trackForm.get('artist')?.invalid">
+          <small>Вкажіть артиста</small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="genre">Жанр</label>
+          <input id="genre" formControlName="genre" type="text" placeholder="Pop, Rock...">
+        </div>
+        <div class="form-group">
+          <label for="releaseYear">Рік випуску</label>
+          <input id="releaseYear" formControlName="releaseYear" type="number">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="duration">Тривалість (у секундах)</label>
+        <input id="duration" formControlName="duration" type="number" placeholder="Наприклад: 158">
+      </div>
+
+      <div class="form-group">
+        <label for="albumArtUrl">Посилання на обкладинку (URL або шлях)</label>
+        <input id="albumArtUrl" formControlName="albumArtUrl" type="text" placeholder="assets/ray.png">
+        <div class="error-text" *ngIf="trackForm.get('albumArtUrl')?.touched && trackForm.get('albumArtUrl')?.invalid">
+          <small>Додайте шлях до зображення</small>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="cancel-btn" (click)="onCancel()">Скасувати</button>
+        <button type="submit" class="submit-btn" [disabled]="trackForm.invalid">Зберегти трек</button>
+      </div>
+
+    </form>
+  </div>
+</div>
